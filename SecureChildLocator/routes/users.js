@@ -79,10 +79,11 @@ router.put('/updateUser' , function(req , res) {
 });
 
 /* delete
-  DELETE USER (delete user from database)
+  DELETE USER POR BODY MESSAGE
   */
   router.delete('/deleteUser' , function(req , res) {
     var username = req.body.username;
+
 
     RegisterModel.findOneAndRemove({username: username} , (function (err) {
       if(err) {
@@ -90,8 +91,25 @@ router.put('/updateUser' , function(req , res) {
          return res.status(500).send();
       }
 
-      return res.status(200).send();
+      return res.status(200).send(User);
     }));
+  });
+
+
+/*delete
+DELETE USER POR ID
+  */
+  router.delete('/deleteUserTable/:id' , function (req , res) {
+    var id = req.params.id;
+
+    RegisterModel.findOneAndRemove({_id :id} , function (err) {
+      if(err) {
+         console.log(err);
+         return res.status(500).send();
+      }
+
+      return res.status(200).send();
+    });
   });
 
   /*get
