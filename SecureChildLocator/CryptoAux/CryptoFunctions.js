@@ -137,6 +137,20 @@ exports.VerificarTokenExpirado = function(dataToVerificar) {
     return decipheredData;
   }
 
+//CIFRAR COM BASE EM KEY
+exports.cifraServerInfoKey = function (dataToCipher , key) {
+  var serverCipher = crypto.createCipher('aes256' , key);
+  serverCipher.setAutoPadding(auto_padding = true);
+  var cipheredData = server.Cipher.update(dataToCipher, 'utf8' , 'base64') + serverCipher.final('base64')
+  return cipheredData;
+}
+
+exports.decifraServerInfoKey = function (dataToDecipher , key) {
+  var serverDecipher = crypto.createDecipher('aes256' , key);
+  serverDecipher.setAutoPadding(auto_padding = true);
+  var decipheredData = serverDecipher.update(dataToDecipher , 'base64' , 'utf8') + serverDecipher.final('utf8')
+  return decipheredData;
+}
 
 
 

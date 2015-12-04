@@ -15,7 +15,7 @@ mongoose.connect ( "mongodb://rule:macacodourado11@ds059804.mongolab.com:59804/u
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var server = require('./routes/server');
+var server = require('./routes/userSecure');
 
 var app = express();
 

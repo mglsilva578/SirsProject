@@ -7,13 +7,6 @@ var shortid = require('shortid');
 var crypto = require('crypto');
 
 
-//DATABASE INFO
-
-//NESTED TOKEN NAO TA A CIFRAR BEM (HARD CODE TOKEN POR AGORA)
-//var TokenSchema = mongoose.Schema({
-//  valor: String,
-//  dataV: String
-//});
 
 var RegisterSchema = mongoose.Schema({
   username: String,
@@ -28,25 +21,10 @@ var RegisterSchema = mongoose.Schema({
 });
 
 
-//message service(SEM SALDO LOL PRECISO ARRANJAR OTURA FREE ACCOUNT)
-var c = new TMClient('andregoncalves', 'Rkkby2vtaAPZ8tYLz19YcZAi9OOVCO');
 
 //MONGOOSE
 var RegisterModel = mongoose.model('users' , RegisterSchema);
 //var TokenModel = mongoose.model('tokens' , TokenSchema);
-
-
-
-
-
-
-
-//TESTAR ENVIO DE SMS PARA O CLIENT
-router.get('/sendMessage', function (req , res) {
-  c.Messages.send({text: 'teste' , phones:'351917076086'} , function(err, res) {
-    console.log('Messages.send()', err, res);
-  });
-});
 
 
 /*
@@ -352,6 +330,7 @@ router.put('/updateUser' , function(req , res) {
       });
 
 
+//tentativa de troca de prime e generator com o java
 router.get('/shareModels' , function (req , res) {
     var prime = Cipher.sharePrime();
     var generator = Cipher.shareGenerator();
