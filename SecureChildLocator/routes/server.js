@@ -8,7 +8,7 @@ var mongoose = require ("mongoose");
 
 //PEDIDOS HTTP
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'WELCOME TO SERVER' });
+  res.render('index', { title: 'bla' });
 });
 
 

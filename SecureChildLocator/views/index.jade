@@ -3,27 +3,10 @@ extends layout
 
 block content
     h1= title
-    p Welcome to our test
+    p JK , SECURITY HERE SUCKS
 
     // Wrapper
     #wrapper
-
-        // USER INFO
-        #userInfo
-            h2 User Info
-            p
-                strong Name:
-                |  <span id='userInfoName'></span>
-                br
-                strong Age:
-                |  <span id='userInfoAge'></span>
-                br
-                strong Gender:
-                |  <span id='userInfoGender'></span>
-                br
-                strong Location:
-                |  <span id='userInfoLocation'></span>
-        // /USER INFO
 
         // USER LIST
         h2 User List
@@ -32,6 +15,13 @@ block content
                 thead
                     th UserName
                     th Password
+                    th Relation
+                    th Number
+                    th latitude
+                    th longitude
+                    th tokenValor
+                    th tokenDate
+                    th sharedKey
                     th Delete?
                 tbody
         // /USER LIST
@@ -43,11 +33,14 @@ block content
                 input#inputUserName(type='text', placeholder='Username')
                 input#inputUserPassword(type='text', placeholder='Password')
                 br
-                input#inputUserFullname(type='text', placeholder='Full Name')
-                input#inputUserAge(type='text', placeholder='Age')
+                input#inputUserRelation(type='text', placeholder='Relation')
+                input#inputUserNumber(type='text', placeholder='Number')
                 br
-                input#inputUserLocation(type='text', placeholder='Location')
-                input#inputUserGender(type='text', placeholder='gender')
+                input#inputUserLatitude(type='text', placeholder='Latitude')
+                input#inputUserLongitude(type='text', placeholder='Longitude')
+                br
+                input#inputUserTokenValor(type='text', placeholder ='TokenValor')
+                input#inputUserTokenDate(type='text', placeholder ='TokenDate')
                 br
                 button#btnAddUser Add User
         // /ADD USER

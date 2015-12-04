@@ -5,9 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//session
+var session = require("express-session");
 //database connection
 var mongoose = require ("mongoose");
 mongoose.connect ( "mongodb://rule:macacodourado11@ds059804.mongolab.com:59804/users"); //base de dados users
+
 
 
 var routes = require('./routes/index');
@@ -26,11 +29,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret:"12345678910abcdefg", resave:false , saveUninitialized:true}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/js',express.static(path.join(__dirname, 'public/javascripts')));
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/server', server);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -5,8 +5,7 @@ var userListData = [];
 $(document).ready(function() {
 
 
-    // Username link click
-  $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
+
   // Add User button click
    $('#btnAddUser').on('click', addUser)
    // Delete User link click
@@ -33,8 +32,16 @@ function populateTable() {
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(){
             tableContent += '<tr>';
-            tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '">' + this.username + '</a></td>';
+          //  tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '">' + this.username + '</a></td>';
+            tableContent += '<td>' + this.username + '</td>';
             tableContent += '<td>' + this.password + '</td>';
+            tableContent += '<td>' + this.relation + '</td>';
+            tableContent += '<td>' + this.linkNumber   + '</td>';
+            tableContent += '<td>' + this.latitude + '</td>';
+            tableContent += '<td>' + this.longitude + '</td>';
+            tableContent += '<td>' + this.tokenValor + '</td>';
+            tableContent += '<td>' + this.tokenDate + '</td>';
+            tableContent += '<td>' + this.sharedKey + '</td>';
             tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
             tableContent += '</tr>';
         });
@@ -42,29 +49,6 @@ function populateTable() {
         // Inject the whole content string into our existing HTML table
         $('#userList table tbody').html(tableContent);
     });
-};
-
-// Show User Info
-function showUserInfo(event) {
-
-    // Prevent Link from Firing
-    event.preventDefault();
-
-    // Retrieve username from link rel attribute
-    var thisUserName = $(this).attr('rel');
-
-    // Get Index of object based on id value
-    var arrayPosition = userListData.map(function(arrayItem) { return arrayItem.username; }).indexOf(thisUserName);
-
-    // Get our User Object
-    var thisUserObject = userListData[arrayPosition];
-
-    //Populate Info Box
-    $('#userInfoName').text(thisUserObject.password);
-    $('#userInfoAge').text(thisUserObject.password);
-    $('#userInfoGender').text(thisUserObject.password);
-    $('#userInfoLocation').text(thisUserObject.password);
-
 };
 
 
@@ -85,10 +69,12 @@ function addUser(event) {
         var newUser = {
             'username': $('#addUser fieldset input#inputUserName').val(),
             'password': $('#addUser fieldset input#inputUserPassword').val(),
-        //    'fullname': $('#addUser fieldset input#inputUserFullname').val(),
-        //    'age': $('#addUser fieldset input#inputUserAge').val(),
-        //    'location': $('#addUser fieldset input#inputUserLocation').val(),
-        //    'gender': $('#addUser fieldset input#inputUserGender').val()
+            'relation': $('#addUser fieldset input#inputUserRelation').val(),
+            'number': $('#addUser fieldset input#inputUserNumber').val(),
+            'latitude': $('#addUser fieldset input#inputUserLatitude').val(),
+            'longitude': $('#addUser fieldset input#inputUserLongitude').val(),
+            'tokenValor':$('#addUser fieldset input#inputUserTokenValor').val(),
+            'tokenDate' :$('#addUser fieldset input#inputUserTokenValor').val()
         }
 
         // Use AJAX to post the object to our adduser service
